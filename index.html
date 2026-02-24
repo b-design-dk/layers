@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Layers">
+<meta name="Description" content="Adds an extra encryption layer to diffuse mass surveillance of private messages">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<link href="style/style.css" type="text/css" rel="stylesheet">
+<link rel="icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<title>Layers</title>
+</head>
+
+<body>
+	<!-- Main flow -->
+	<div class="wrapper" role="main">
+		<section>
+			<label for="seedSelect">Active Key</label>
+			<p class="meta">Select or add a private key stored locally on your device</p>
+			<div class="buttons">
+				<select id="seedSelect" class="control control--fixed" autocomplete="off"></select>
+				<a class="add-key" href="admin.html" aria-label="Add key">+</a>
+			</div>
+		</section>
+
+		<section>
+			<label for="message">Message</label>
+			<p class="meta">Write a message to encrypt, or paste a Layers message to decrypt.</p>
+			<textarea id="message" rows="4" class="control" placeholder="Type or paste your message here..."></textarea>
+			<div class="buttons">
+				<button id="processBtn" class="control control--action control--fixed" disabled>
+					Process message
+				</button>
+			</div>
+		</section>
+
+		<section id="output_section">
+			<label for="output">Processed Message</label>
+			<textarea id="output" rows="4" class="control" readonly placeholder="Any encryptet or decryptet message will appear here..."></textarea>
+			<div class="buttons">
+				<button id="copyBtn" class="control control--fixed control--action">Copy Encrypted Message</button>
+			</div>
+		</section>
+	</div>
+	
+	<!-- Footer -->
+	<footer role="contentinfo">
+		<header>
+			<div class="logo">
+				<img src="icons/icon-192.png" height="50px" width="50px" alt="layers logo">
+				<h1>Layers</h1>
+			</div>
+			<p class="meta">Adds an extra encryption layer to diffuse mass surveillance of private messages</p>
+		</header>
+		<div id="impactStatement" class="impact">
+			Automation scales.<br>
+			Human intent does not.<br>
+			<span id="impactCount" class="impact__count">0</span> times you refused automation from this device.
+		</div>
+		<nav role="navigation">
+			<ul>
+				<li><a href="admin.html">Key Admin</a></li>
+				<li><a href="faq.html">FAQ</a></li>
+				<li><a target="_blank" href="b-design.dk">About</a></li>
+				<li><a target="_blank" href="#">Donate</a></li>
+			</ul>
+		</nav>
+	</footer>
+	<!-- IMPORT MODAL -->
+	<dialog id="importModal">
+		<form method="dialog">
+			<h2>Import key</h2>
+
+			<label for="importName">Key name</label>
+			<input id="importName" type="text" required class="control" />
+
+			<label for="importSeed">Shared key</label>
+			<textarea id="importSeed" rows="3" required class="control"></textarea>
+
+			<p class="meta">
+				The key will be stored locally on this device.
+			</p>
+
+			<div class="modal-actions">
+				<div class="buttons">
+					<button value="cancel" formnovalidate>Cancel</button>
+					<button class="control control--fixed control--action" value="confirm">
+						Import key
+					</button>
+				</div>
+			</div>
+		</form>
+	</dialog>
+	<!-- Import scripts -->
+	<script src="js/vault.js"></script>
+	<script src="js/impact.js"></script>
+	<script src="js/crypto.js"></script>
+	<script src="js/bootstrap.js"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Layers — Key Admin</title>
+	<link rel="stylesheet" href="style/style.css" />
+</head>
+
+<body>
+	<div class="wrapper" role="main">
+		<a href="index.html">back</a>
+		<section aria-labelledby="generate-heading">
+			<h2 id="generate-heading">Add key</h2>
+			<p class="meta">
+				Create or import private key stored locally in your browser.
+			</p>
+			<div class="buttons">
+				<button id="generateKeyBtn" class="control control--fixed">
+					Generate
+				</button>
+			</div>
+			<p class="meta">
+				Need to manually import a key?
+			</p>
+			<button id="importKeyBtn" class="control control--danger">Import</button>
+		</section>
+		<section aria-labelledby="keys-heading">
+			<h2 id="keys-heading">Stored keys</h2>
+			<ul class="key-list">
+				<!-- JS renders list items -->
+			</ul>
+		</section>
+		<button id="resetStorageBtn" class="control control--danger">
+			Reset local data
+		</button>
+	</div>
+	<footer role="contentinfo">
+		<header>
+			<h1>Layers</h1>
+			<p class="meta">Adds an extra encryption layer to diffuse mass surveillance of private messages</p>
+		</header>
+		<div id="impactStatement" class="impact">
+			Automation scales.<br>
+			Human intent does not.<br>
+			<span id="impactCount" class="impact__count">0</span> times you refused automation from this device.
+		</div>
+		<nav role="navigation">
+			<ul>
+				<li><a href="admin.html">Key Admin</a></li>
+				<li><a href="faq.html">FAQ</a></li>
+				<li><a target="_blank" href="b-design.dk">About</a></li>
+				<li><a target="_blank" href="#">Donate</a></li>
+			</ul>
+		</nav>
+	</footer>
+
+	<!-- COPY MODAL -->
+	<dialog id="copyModal">
+		<form method="dialog">
+			<h2>Share key</h2>
+			<p class="meta">
+				This will copy a shareable message containing the key and instructions.<br>
+				Only share it with people you trust.
+			</p>
+			<div class="modal-actions">
+				<div class="buttons">
+					<button value="cancel" class="control control--fixed">
+						Cancel
+					</button>
+
+					<button id="confirmCopyBtn" value="confirm"
+						class="control control--fixed control--action">
+						Share key
+					</button>
+				</div>
+			</div>
+		</form>
+	</dialog>
+
+	<!-- DELETE MODAL -->
+	<dialog id="deleteModal">
+		<form method="dialog">
+			<h2>Delete key</h2>
+			<p class="meta">
+				This action cannot be undone.<br>
+				Messages encrypted with this key cannot be decrypted afterwards.
+			</p>
+
+			<div class="modal-actions">
+				<div class="buttons">
+					<button value="cancel" class="control control--fixed">
+						Cancel
+					</button>
+
+					<button value="confirm" class="control control--fixed control--danger">
+						Delete key
+					</button>
+				</div>
+			</div>
+		</form>
+	</dialog>
+	<!-- IMPORT MODAL -->
+	<dialog id="importModal">
+		<form method="dialog">
+			<h2>Import key</h2>
+
+			<label for="importName">Key name</label>
+			<input id="importName" type="text" required class="control" />
+
+			<label for="importSeed">Shared key</label>
+			<textarea id="importSeed" rows="3" required class="control"></textarea>
+
+			<p class="meta">
+				The key will be stored locally on this device.
+			</p>
+
+			<div class="modal-actions">
+				<div class="buttons">
+					<button value="cancel" formnovalidate>Cancel</button>
+					<button class="control control--fixed control--action" value="confirm">
+						Import key
+					</button>
+				</div>
+			</div>
+		</form>
+	</dialog>
+
+	<script src="js/vault.js"></script>
+	<script src="js/impact.js"></script>
+	<script src="js/admin.js"></script>
+	<script src="js/bootstrap.js"></script>
+
+</body>
+</html>
