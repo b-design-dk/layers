@@ -40,6 +40,31 @@ body {
 	color: var(--text-primary);
 }
 
+.init-state {
+	display: none;
+}
+
+body.system-uninitialized .init-state {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+body.system-uninitialized #output_section,
+body.system-uninitialized section:not(.init-state) {
+	display: none;
+}
+
+.share-training {
+	display: none;
+}
+
+body.just-initialized .share-training {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
 h1, h2, h3, h4, h5, h6,
 label {
 	font-family: "IBM Plex Sans", sans-serif;

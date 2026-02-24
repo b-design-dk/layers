@@ -118,6 +118,7 @@ if (importModal) {
 
 		nameInput.value = "";
 		seedInput.value = "";
+		checkInitializationState();
 	});
 }
 
@@ -137,6 +138,7 @@ function getActiveSeed() {
 function initCrypto() {
 	
 	let hasEngaged = false;
+	let justInitialized = false;
 
 	seedSelect = document.getElementById("seedSelect");
 	messageInput = document.getElementById("message");
@@ -145,6 +147,57 @@ function initCrypto() {
 	copyBtn = document.getElementById("copyBtn");
 
 	refreshSeedDropdown();
+	checkInitializationState();
+	
+	const initBtn = document.getElementById("initCreateBtn");
+
+	if (initBtn) {
+		initBtn.addEventListener("click", () => {
+			const name = prompt("Name this key:");
+			if (!name) return;
+
+			try {
+				Vault.create(name);
+				refreshSeedDropdown();
+				checkInitializationState();
+				justInitialized = true;
+				document.body.classList.add("just-initialized");
+			} catch (err) {
+				alert(err.message);
+			}
+		});
+	}
+	
+	const shareInlineBtn = document.getElementById("shareInlineBtn");
+
+	if (shareInlineBtn) {
+		shareInlineBtn.addEventListener("click", async () => {
+			const activeName = seedSelect.value;
+			const entry = Vault.get(activeName);
+
+			if (!entry || !entry.seed) return;
+
+			const baseUrl = window.location.origin + window.location.pathname;
+			const link = `${baseUrl}#invite=${encodeURIComponent(entry.seed)}&name=${encodeURIComponent(activeName)}`;
+
+			const invitationText = `Layers key invitation:
+	${link}`;
+
+			try {
+				await navigator.clipboard.	writeText(invitationText);
+
+				const originalText = shareInlineBtn.textContent;
+				shareInlineBtn.textContent = "Link copied to clipboard";
+
+				setTimeout(() => {
+					shareInlineBtn.textContent = originalText;
+				}, 1500);
+
+			} catch {
+				alert("Copy failed");
+			}
+		});
+	}
 	
 	seedSelect.addEventListener("change", () => {
 		setLastUsedKey(seedSelect.value);
@@ -181,7 +234,7 @@ function initCrypto() {
 		let decrypted = null;
 		let matchedKeyName = null;
 
-		// 1️⃣ Try active key first
+		// Try active key first
 		try {
 			const activeSeed = getActiveSeed();
 			decrypted = await aesDecrypt(input, activeSeed);
@@ -190,7 +243,7 @@ function initCrypto() {
 			decrypted = null;
 		}
 
-		// 2️⃣ If failed, try all other keys
+		// If failed, try all other keys
 		if (decrypted === null) {
 			const keys = Vault.list();
 
@@ -319,6 +372,11 @@ function initCrypto() {
 	// --- Events ---
 
 	messageInput.addEventListener("input", () => {
+		
+		if (justInitialized) {
+			justInitialized = false;
+			document.body.classList.remove("just-initialized");
+		}
 
 		const value = messageInput.value.trim();
 		const nowEngaged = value !== "";
@@ -352,6 +410,7 @@ function initCrypto() {
 		if (e.key === IMPACT_KEY) {
 			updateImpactDisplay();
 		}
+		checkInitializationState();
 	});
 	
 	// --- Handle incoming link message ---
@@ -433,4 +492,11 @@ function refreshSeedDropdown() {
 	}
 	
 	setLastUsedKey(seedSelect.value);
+}
+// --- Initialization ---
+function checkInitializationState() {
+	const hasKeys = Vault.list().length > 0;
+
+	document.body.classList.toggle("system-uninitialized", !hasKeys);
+	document.body.classList.toggle("system-ready", hasKeys);
 }

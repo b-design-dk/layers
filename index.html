@@ -19,6 +19,21 @@
 <body>
 	<!-- Main flow -->
 	<div class="wrapper" role="main">
+		<section class="init-state">
+			<h2>This device contains no private keys.</h2>
+			<p class="meta">
+				Layers encrypts messages using keys stored only on this device.
+				Nothing is created automatically.
+			</p>
+			<div class="buttons">
+				<button id="initCreateBtn" class="control control--action control--fixed">
+					Create a key on this device
+				</button>
+			</div>
+			<p class="meta">
+				Keys cannot be recovered if deleted or lost.
+			</p>
+		</section>
 		<section>
 			<label for="seedSelect">Active Key</label>
 			<p class="meta">Select or add a private key stored locally on your device</p>
@@ -27,7 +42,21 @@
 				<a class="add-key" href="admin.html" aria-label="Add key">+</a>
 			</div>
 		</section>
-
+		<section id="shareTraining" class="share-training">
+			<h2>This key exists only on this device.</h2>
+			<p class="meta">
+				Encrypted messages can only be read by someone who holds the same key.
+			</p>
+			<div class="buttons">
+				<button id="shareInlineBtn"
+					class="control control--fixed control--action">
+					Share this key
+				</button>
+			</div>
+			<p class="meta">
+				Keys can always be shared from <a href="admin.html">Key Admin</a>.
+			</p>
+		</section>
 		<section>
 			<label for="message">Message</label>
 			<p class="meta">Write a message to encrypt, or paste a Layers message to decrypt.</p>
