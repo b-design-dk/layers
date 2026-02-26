@@ -171,31 +171,12 @@ function initCrypto() {
 	const shareInlineBtn = document.getElementById("shareInlineBtn");
 
 	if (shareInlineBtn) {
-		shareInlineBtn.addEventListener("click", async () => {
+		shareInlineBtn.addEventListener("click", () => {
 			const activeName = seedSelect.value;
-			const entry = Vault.get(activeName);
+			if (!activeName) return;
 
-			if (!entry || !entry.seed) return;
-
-			const baseUrl = window.location.origin + window.location.pathname;
-			const link = `${baseUrl}#invite=${encodeURIComponent(entry.seed)}&name=${encodeURIComponent(activeName)}`;
-
-			const invitationText = `Layers key invitation:
-	${link}`;
-
-			try {
-				await navigator.clipboard.	writeText(invitationText);
-
-				const originalText = shareInlineBtn.textContent;
-				shareInlineBtn.textContent = "Link copied to clipboard";
-
-				setTimeout(() => {
-					shareInlineBtn.textContent = originalText;
-				}, 1500);
-
-			} catch {
-				alert("Copy failed");
-			}
+			window.location.href =
+				`key.html?name=${encodeURIComponent(activeName)}`;
 		});
 	}
 	
