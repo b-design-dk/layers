@@ -243,6 +243,7 @@ textarea.control {
 	width: calc(100% - 34px); /* 16px + 16px horizontal padding */
 }
 
+select:focus-visible,
 textarea.control:focus-visible,
 input.control:focus-visible {
 	outline: none;
