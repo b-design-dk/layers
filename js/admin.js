@@ -28,12 +28,10 @@ function renderKeyList() {
 		item.innerHTML = `
 			<span class="key-name">${name}</span>
 			<div class="key-actions">
-				<button class="control control--fixed" data-action="copy" data-key="${name}">
-					Share
-				</button>
-				<button class="control control--fixed" data-action="delete" data-key="${name}">
-					Delete
-				</button>
+				<a class="control"
+				   href="key.html?name=${encodeURIComponent(name)}">
+					Edit
+				</a>
 			</div>
 		`;
 		tableBody.appendChild(item);
@@ -46,7 +44,6 @@ function initAdmin() {
 	importBtn = document.getElementById("importKeyBtn");
 
 	copyModal = document.getElementById("copyModal");
-	deleteModal = document.getElementById("deleteModal");
 	importModal = document.getElementById("importModal");
 
 	confirmCopyBtn = document.getElementById("confirmCopyBtn");
@@ -79,17 +76,6 @@ ${link}`;
 		} catch {
 			alert("Copy failed");
 		}
-	});
-
-	// Delete
-	deleteModal.addEventListener("close", () => {
-		if (deleteModal.returnValue !== "confirm") {
-			selectedKeyName = null;
-			return;
-		}
-		Vault.remove(selectedKeyName);
-		selectedKeyName = null;
-		renderKeyList();
 	});
 
 	// Generate

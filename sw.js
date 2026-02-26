@@ -1,15 +1,18 @@
-const CACHE_NAME = "layers-core-v0.5.1";
+const CACHE_NAME = "layers-core-v0.5.61";
 
 const CORE_ASSETS = [
-  "/",
-  "/index.html",
-  "/admin.html",
-  "/style/style.css",
-  "/js/bootstrap.js",
-  "/js/crypto.js",
-  "/js/vault.js",
-  "/js/admin.js",
-  "/js/impact.js"
+	"/",
+	"/index.html",
+	"/admin.html",
+	"/key.html",
+	"/style/style.css",
+	"/js/bootstrap.js",
+	"/js/crypto.js",
+	"/js/vault.js",
+	"/js/admin.js",
+	"/js/impact.js",
+	"/js/key.js",
+	"/js/qrcode.min.js"
 ];
 
 self.addEventListener("install", event => {

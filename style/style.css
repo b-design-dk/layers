@@ -159,6 +159,23 @@ nav li {
    4. COMPONENTS
    ===================================================== */
 
+/* ---- QR code ---- */
+
+#qrWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	background: var(--bg-700);
+	border: 1px solid var(--border-subtle);
+}
+
+#qrCanvas {
+	max-width: 260px;
+	width: 100%;
+	height: auto;
+}
+
 /* ---- Controls ---- */
 
 .control {

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="style/style.css" rel="stylesheet">
+	<title id="pageTitle">Layers - Edit</title>
+</head>
+
+<body>
+	<div class="wrapper" role="main">
+
+		<a href="admin.html">Back</a>
+
+		<section>
+			<label for="keyNameInput">Key name</label>
+			<input id="keyNameInput" class="control" type="text">
+			<button id="saveNameBtn"
+				class="control control--action control--fixed"
+				disabled>
+				Save name
+			</button>
+			<p class="meta">
+				This name is stored locally on this device - changes to the name will not affect the actual key.
+			</p>
+		</section>
+
+		<section>
+			<h2>Invite</h2>
+
+			<div id="qrWrapper">
+				<canvas id="qrCanvas"></canvas>
+			</div>
+
+			<p class="meta">
+				Scan to import this key on another device.
+			</p>
+		</section>
+
+		<section>
+			<button id="copyInviteBtn"
+				class="control control--action control--fixed">
+				Share over URL
+			</button>
+		</section>
+
+		<section>
+			<button id="deleteKeyBtn"
+				class="control control--danger control--fixed">
+				Delete key
+			</button>
+		</section>
+	</div>
+	<footer role="contentinfo">
+		<header>
+			<h1>Layers</h1>
+			<p class="meta">Adds an extra encryption layer to diffuse mass surveillance of private messages</p>
+		</header>
+		<div id="impactStatement" class="impact">
+			Automation scales.<br>
+			Human intent does not.<br>
+			<span id="impactCount" class="impact__count">0</span> times you refused automation from this device.
+		</div>
+		<nav role="navigation">
+			<ul>
+				<li><a href="admin.html">Key Admin</a></li>
+				<li><a href="faq.html">FAQ</a></li>
+				<li><a target="_blank" href="b-design.dk">About</a></li>
+				<li><a target="_blank" href="#">Donate</a></li>
+			</ul>
+		</nav>
+	</footer>
+	<!-- DELETE MODAL -->
+	<dialog id="deleteModal">
+		<form method="dialog">
+			<h2>Delete key</h2>
+			<p class="meta">
+				This action cannot be undone.<br>
+				Messages encrypted with this key cannot be decrypted afterwards.
+			</p>
+
+			<div class="modal-actions">
+				<div class="buttons">
+					<button value="cancel" class="control control--fixed">
+						Cancel
+					</button>
+
+					<button value="confirm" class="control control--fixed control--danger">
+						Delete key
+					</button>
+				</div>
+			</div>
+		</form>
+	</dialog>
+
+	<script src="js/vault.js"></script>
+	<script src="js/impact.js"></script>
+	<script src="js/qrcode.min.js"></script>
+	<script src="js/key.js"></script>
+</body>
+</html>
