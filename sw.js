@@ -1,4 +1,4 @@
-const CACHE_NAME = "layers-core-v0.5.62";
+const CACHE_NAME = "layers-core-v0.5.9";
 
 const CORE_ASSETS = [
 	"/",

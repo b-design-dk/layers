@@ -1,10 +1,5 @@
 // js/key.js
 
-function getKeyNameFromUrl() {
-	const params = new URLSearchParams(window.location.search);
-	return params.get("name");
-}
-
 function redirectToAdmin() {
 	window.location.href = "admin.html";
 }
@@ -16,7 +11,15 @@ function buildInviteLink(name, seed) {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-	const name = getKeyNameFromUrl();
+	// -------------------------
+	// Routing & state
+	// -------------------------
+
+	const params = new URLSearchParams(window.location.search);
+
+	const name = params.get("name");
+	const from = params.get("from");
+
 	if (!name) return redirectToAdmin();
 
 	const entry = Vault.get(name);
@@ -24,18 +27,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const seed = entry.seed;
 
+	// Dynamic back link
+	const backLink = document.querySelector('a[href="admin.html"]');
+	if (from === "index" && backLink) {
+		backLink.href = "index.html";
+	}
+
 	// Set title
 	document.title = `Layers - Edit ${name}`;
 
-	// Populate input
+	// -------------------------
+	// Rename logic
+	// -------------------------
+
 	const nameInput = document.getElementById("keyNameInput");
-	nameInput.value = name;
-	
 	const saveBtn = document.getElementById("saveNameBtn");
+
+	nameInput.value = name;
 
 	nameInput.addEventListener("input", () => {
 		const newName = nameInput.value.trim();
-
 		const changed = newName !== name;
 		const valid = newName.length > 0;
 
@@ -55,26 +66,31 @@ document.addEventListener("DOMContentLoaded", () => {
 		const oldEntry = Vault.get(name);
 		if (!oldEntry) return;
 
-		// Create new
 		Vault.createImported(newName, oldEntry.seed);
-
-		// Remove old
 		Vault.remove(name);
 
-		// Redirect to new URL
-		window.location.href =
-			`key.html?name=${encodeURIComponent(newName)}`;
+		// Preserve "from" context on redirect
+		let newUrl = `key.html?name=${encodeURIComponent(newName)}`;
+		if (from === "index") {
+			newUrl += "&from=index";
+		}
+
+		window.location.href = newUrl;
 	});
 
-	// Build invite link
+	// -------------------------
+	// Invite link
+	// -------------------------
+
 	const inviteLink = buildInviteLink(name, seed);
-	
-	// --- QR generation ---
+
+	// -------------------------
+	// QR generation
+	// -------------------------
+
 	if (typeof QRCode !== "undefined") {
 
 		const qrWrapper = document.getElementById("qrWrapper");
-
-		// Clear in case of reload/navigation edge case
 		qrWrapper.innerHTML = "";
 
 		new QRCode(qrWrapper, {
@@ -90,21 +106,30 @@ document.addEventListener("DOMContentLoaded", () => {
 		console.warn("QRCode library not loaded");
 	}
 
-	// Copy button
+	// -------------------------
+	// Share over URL
+	// -------------------------
+
 	const copyBtn = document.getElementById("copyInviteBtn");
+
 	copyBtn.addEventListener("click", async () => {
 		try {
 			await navigator.clipboard.writeText(inviteLink);
 			copyBtn.textContent = "Copied";
+
 			setTimeout(() => {
 				copyBtn.textContent = "Share over URL";
 			}, 1200);
+
 		} catch {
 			alert("Copy failed");
 		}
 	});
 
-	// Delete
+	// -------------------------
+	// Delete logic
+	// -------------------------
+
 	const deleteBtn = document.getElementById("deleteKeyBtn");
 	const deleteModal = document.getElementById("deleteModal");
 
@@ -116,7 +141,12 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (deleteModal.returnValue !== "confirm") return;
 
 		Vault.remove(name);
-		window.location.href = "admin.html";
+
+		if (from === "index") {
+			window.location.href = "index.html";
+		} else {
+			window.location.href = "admin.html";
+		}
 	});
 
 });

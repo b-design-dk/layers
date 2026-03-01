@@ -176,7 +176,7 @@ function initCrypto() {
 			if (!activeName) return;
 
 			window.location.href =
-				`key.html?name=${encodeURIComponent(activeName)}`;
+				`key.html?name=${encodeURIComponent(activeName)}&from=index`;
 		});
 	}
 	
