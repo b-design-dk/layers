@@ -97,8 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			text: inviteLink,
 			width: 260,
 			height: 260,
-			colorDark: "#E6EAF2",
-			colorLight: "#0B0F14",
+			colorDark: "#202126",
+			colorLight: "#EDEDED",
 			correctLevel: QRCode.CorrectLevel.M
 		});
 

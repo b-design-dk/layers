@@ -13,7 +13,7 @@
 		<a href="admin.html">&larr; Back</a>
 
 		<section>
-			<label for="keyNameInput">Key name</label>
+			<label for="keyNameInput">Layer name</label>
 			<input id="keyNameInput" class="control" type="text">
 			<button id="saveNameBtn"
 				class="control control--action control--fixed"
@@ -21,7 +21,7 @@
 				Save name
 			</button>
 			<p class="meta">
-				This name is stored locally on this device - changes to the name will not affect the actual key.
+				This name is stored locally on this device - changes to the name will not affect the actual Layer.
 			</p>
 		</section>
 
@@ -33,7 +33,7 @@
 			</div>
 
 			<p class="meta">
-				Scan to import this key on another device.
+				Scan to import this layer on another device.
 			</p>
 		</section>
 
@@ -47,13 +47,16 @@
 		<section>
 			<button id="deleteKeyBtn"
 				class="control control--danger control--fixed">
-				Delete key
+				Delete layer
 			</button>
 		</section>
 	</div>
 	<footer role="contentinfo">
 		<header>
-			<h1>Layers</h1>
+			<div class="logo">
+				<img src="icons/android-chrome-512x512.png" alt="layers logo">
+				<h1>Layers</h1>
+			</div>
 			<p class="meta">Adds an extra encryption layer to diffuse mass surveillance of private messages</p>
 		</header>
 		<div id="impactStatement" class="impact">

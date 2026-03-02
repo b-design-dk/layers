@@ -19,9 +19,9 @@
 	<div class="wrapper" role="main">
 		<a href="index.html">&larr; Back</a>
 		<section aria-labelledby="generate-heading">
-			<h2 id="generate-heading">Add key</h2>
+			<h2 id="generate-heading">Add layer</h2>
 			<p class="meta">
-				Create or import private key stored locally in your browser.
+				Create or import private layers stored locally in your browser.
 			</p>
 			<div class="buttons">
 				<button id="generateKeyBtn" class="control control--fixed">
@@ -29,12 +29,12 @@
 				</button>
 			</div>
 			<p class="meta">
-				Need to manually import a key?
+				Need to manually import a layer?
 			</p>
 			<button id="importKeyBtn" class="control">Import</button>
 		</section>
 		<section aria-labelledby="keys-heading">
-			<h2 id="keys-heading">Stored keys</h2>
+			<h2 id="keys-heading">Stored layers</h2>
 			<ul class="key-list">
 				<!-- JS renders list items -->
 			</ul>
@@ -45,7 +45,10 @@
 	</div>
 	<footer role="contentinfo">
 		<header>
-			<h1>Layers</h1>
+			<div class="logo">
+				<img src="icons/android-chrome-512x512.png" alt="layers logo">
+				<h1>Layers</h1>
+			</div>
 			<p class="meta">Adds an extra encryption layer to diffuse mass surveillance of private messages</p>
 		</header>
 		<div id="impactStatement" class="impact">
