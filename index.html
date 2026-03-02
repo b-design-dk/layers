@@ -28,29 +28,29 @@
 		</section>
 	<div class="wrapper" role="main">
 		<section class="init-state">
-			<h2>This device contains no private keys.</h2>
+			<h2>This device contains no encryption layers.</h2>
 			<p class="meta">
 				Nothing is created automatically.</p>
 			<div class="buttons">
 				<button id="initCreateBtn" class="control control--action control--fixed">
-					Create a key on this device
+					Create a layer on this device
 				</button>
 			</div>
 			<p class="meta">
-				Keys cannot be recovered if deleted or lost.
+				Encryption layers cannot be recovered if deleted or lost.
 			</p>
 		</section>
 		<section class="init-state">
 			<h2>What is Layers?</h2>
-			<p>Layers encrypts messages using keys stored only on this device.</p><p class="meta">Send the encrypted text through any messaging app you choose.</p>
+			<p>Layers encrypts messages using encryption layers stored only on this device.</p><p class="meta">Send the encrypted text through any messaging app you choose.</p>
 		</section>
 		<section id="shareTraining" class="share-training">
 			<h2>You can now encrypt messages.</h2>
-			<p>Only someone with the same key can decrypt them.</p>
+			<p>Only someone with the same layer can decrypt them.</p>
 			<div class="buttons">
 				<button id="shareInlineBtn"
 					class="control control--fixed control--action">
-					Share this key
+					Share this Layer
 				</button>
 			</div>
 			<p class="meta">
@@ -59,7 +59,7 @@
 		</section>
 		<section>
 			<label for="message">Message</label>
-			<p class="meta">Write a message to encrypt, or paste a Layers message to decrypt.</p>
+			<p class="meta">Write a message to encrypt, or paste Layered message to decrypt.</p>
 			<textarea id="message" rows="4" class="control" placeholder="Type or paste your message here..."></textarea>
 			<div class="buttons">
 				<button id="processBtn" class="control control--action control--fixed" disabled>
@@ -72,7 +72,7 @@
 			<label for="output">Processed Message</label>
 			<textarea id="output" rows="4" class="control" readonly placeholder="Any encryptet or decryptet message will appear here..."></textarea>
 			<div class="buttons">
-				<button id="copyBtn" class="control control--fixed control--action">Copy Encrypted Message</button>
+				<button id="copyBtn" class="control control--fixed control--action" disabled>Copy Layered Message</button>
 			</div>
 		</section>
 	</div>
@@ -81,7 +81,7 @@
 	<footer role="contentinfo">
 		<header>
 			<div class="logo">
-				<!--<img src="icons/icon-192.png" height="50px" width="50px" alt="layers logo">-->
+				<img src="icons/android-chrome-512x512.png" alt="layers logo">
 				<h1>Layers</h1>
 			</div>
 			<p class="meta">Adds an extra encryption layer to diffuse mass surveillance of private messages</p>

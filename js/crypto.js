@@ -257,6 +257,9 @@ function initCrypto() {
 
 		messageInput.value = "";
 		autoGrow(messageInput);
+		hasEngaged = false;
+		document.body.classList.remove("system-engaged");
+		updateProcessButton();
 
 		output.classList.add("is-decrypted");
 		section.classList.add("section--decrypted");
@@ -278,7 +281,6 @@ function initCrypto() {
 			autoGrow(output);
 
 			processBtn.classList.remove("is-processing");
-			processBtn.disabled = false;
 
 		}, 180);
 	});
