@@ -46,7 +46,7 @@
 	<footer role="contentinfo">
 		<header>
 			<div class="logo">
-				<img src="icons/android-chrome-512x512.png" alt="layers logo">
+				<img src="icons/android-chrome-512x512.png" width="28px" height="28px" alt="layers logo">
 				<h1>Layers</h1>
 			</div>
 			<p class="meta">Adds an extra encryption layer to diffuse mass surveillance of private messages</p>
@@ -92,23 +92,23 @@
 	<!-- IMPORT MODAL -->
 	<dialog id="importModal">
 		<form method="dialog">
-			<h2>Import key</h2>
+			<h2>Import Layer</h2>
 
-			<label for="importName">Key name</label>
+			<label for="importName">Layer name</label>
 			<input id="importName" type="text" required class="control" />
 
-			<label for="importSeed">Shared key</label>
+			<label for="importSeed">Layer Seed</label>
 			<textarea id="importSeed" rows="3" required class="control"></textarea>
 
 			<p class="meta">
-				The key will be stored locally on this device.
+				The layer will be stored locally on this device.
 			</p>
 
 			<div class="modal-actions">
 				<div class="buttons">
-					<button value="cancel" formnovalidate>Cancel</button>
+					<button class="control control--fixed" value="cancel" formnovalidate>Cancel</button>
 					<button class="control control--fixed control--action" value="confirm">
-						Import key
+						Import layer
 					</button>
 				</div>
 			</div>
